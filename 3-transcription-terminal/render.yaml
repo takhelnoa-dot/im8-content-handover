@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: im8-transcription-terminal
+    runtime: node
+    rootDir: scripts/transcription-terminal
+    buildCommand: npm install
+    startCommand: node server.js
+    healthCheckPath: /healthz
+    plan: starter
+    disk:
+      name: terminal-data
+      mountPath: /data
+      sizeGB: 10
+    envVars:
+      - key: TERMINAL_DATA_DIR
+        value: /data
+      - key: DASHBOARD_PASSWORD
+        sync: false
+      - key: TERMINAL_COOKIE_SECRET
+        generateValue: true
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: ASSEMBLYAI_API_KEY
+        sync: false
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: GOOGLE_SERVICE_ACCOUNT_JSON
+        sync: false
+      - key: TERMINAL_UPLOAD_DRIVE_FOLDER_ID
+        sync: false
