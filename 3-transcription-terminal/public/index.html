@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IM8 Transcription Terminal</title>
+  <link rel="stylesheet" href="/css/terminal.css">
+</head>
+<body class="has-sidebar">
+
+  <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Open menu">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+
+  <aside class="app-sidebar" id="app-sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-mark">IM8 HEALTH</div>
+      <div class="brand-sub">Transcription Terminal</div>
+    </div>
+    <nav class="sidebar-nav" id="main-nav">
+      <a href="#" data-view="search" class="active">Search</a>
+      <a href="#" data-view="library">Library</a>
+      <a href="#" data-view="upload">Upload</a>
+      <a href="#" data-view="speakers">Speakers</a>
+      <a href="#" data-view="categories">Categories</a>
+      <a href="#" data-view="settings">Settings</a>
+    </nav>
+    <div class="sidebar-footer">
+      <form method="POST" action="/logout">
+        <button class="btn btn-ghost btn-sm btn-block" type="submit">Sign Out</button>
+      </form>
+    </div>
+  </aside>
+
+  <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+  <div class="toast-container" id="toast-container"></div>
+  <main class="container" id="main-content">
+    <p style="padding:2rem">Loading views...</p>
+  </main>
+
+  <script>
+    (function() {
+      var toggle = document.getElementById('sidebar-toggle');
+      var sidebar = document.getElementById('app-sidebar');
+      var backdrop = document.getElementById('sidebar-backdrop');
+      function close() { document.body.classList.remove('sidebar-open'); }
+      function open() { document.body.classList.add('sidebar-open'); }
+      toggle.addEventListener('click', function() {
+        document.body.classList.contains('sidebar-open') ? close() : open();
+      });
+      backdrop.addEventListener('click', close);
+      sidebar.addEventListener('click', function(e) {
+        if (e.target.tagName === 'A') close();
+      });
+    })();
+  </script>
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>

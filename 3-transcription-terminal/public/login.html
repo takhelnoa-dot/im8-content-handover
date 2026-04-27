@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - IM8 Transcription Terminal</title>
+  <link rel="stylesheet" href="/css/terminal.css">
+</head>
+<body>
+  <div class="login-wrapper">
+    <div class="login-card">
+      <span class="login-brand">IM8 Health</span>
+      <h1>Transcription Terminal</h1>
+      <p class="login-subtitle">Enter password to continue</p>
+
+      <div id="login-error" class="login-error" style="display:none">
+        Incorrect password. Try again.
+      </div>
+
+      <form method="POST" action="/login">
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="Enter dashboard password" autofocus required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Sign In</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    if (window.location.search.includes('error=1')) {
+      document.getElementById('login-error').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
